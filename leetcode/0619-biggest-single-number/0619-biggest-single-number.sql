@@ -1,6 +1,6 @@
 # Write your MySQL query statement below
 SELECT
-    MAX(num) AS num
+    ifnull(MAX(num),null) AS num
 FROM(
     SELECT
         num
