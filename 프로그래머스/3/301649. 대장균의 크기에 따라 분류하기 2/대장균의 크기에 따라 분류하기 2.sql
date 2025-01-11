@@ -1,0 +1,17 @@
+-- 코드를 작성해주세요
+SELECT
+    ID,
+    (CASE
+        WHEN RANKING = 1 THEN 'CRITICAL'
+        WHEN RANKING = 2 THEN 'HIGH'
+        WHEN RANKING = 3 THEN 'MEDIUM'
+        WHEN RANKING = 4 THEN 'LOW'
+    END) AS COLONY_NAME
+FROM
+    (
+        SELECT
+            ID,
+            NTILE(4) OVER (ORDER BY SIZE_OF_COLONY DESC) AS RANKING
+        FROM ECOLI_DATA     
+    ) AS ED
+ORDER BY ID
