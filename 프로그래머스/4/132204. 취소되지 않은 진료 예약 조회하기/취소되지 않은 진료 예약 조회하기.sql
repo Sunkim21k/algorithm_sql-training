@@ -1,6 +1,6 @@
 /*
  1. 2022년 4월 13일 취소되지 않은 흉부외과(CS) 진료 예약 내역 조회
-   1-1. APNT_YMD >= 2022-04-13
+   1-1. APNT_YMD = 2022-04-13
    1-2. MCDP_CD = CS
    1-3. APNT_CNCL_YN = 'N'
  2. 진료예약번호, 환자이름, 환자번호, 진료과코드, 의사이름, 진료예약일시
@@ -25,7 +25,6 @@ INNER JOIN
 WHERE
     DATE_FORMAT(AP.APNT_YMD,'%Y-%m-%d') = '2022-04-13'
     AND AP.MCDP_CD = 'CS'
-    AND ((AP.APNT_CNCL_YN = 'N')
-    OR (AP.APNT_CNCL_YMD >= '2022-04-13'))
+    AND AP.APNT_CNCL_YN = 'N'
 ORDER BY
     AP.APNT_YMD ASC;
