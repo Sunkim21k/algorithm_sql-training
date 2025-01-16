@@ -1,0 +1,26 @@
+/*
+    1. 년, 월, 성별 별로 상품을 구매한 회원수
+    2. 정렬 : 년, 월, 성별 오름차순
+    3. 성별 정보가 없는 경우 제외
+*/
+-- 코드를 입력하세요
+SELECT
+    YEAR(SALE.SALES_DATE) AS YEAR,
+    MONTH(SALE.SALES_DATE) AS MONTH,
+    INFO.GENDER,
+    COUNT(DISTINCT SALE.USER_ID) AS USERS
+FROM
+    ONLINE_SALE AS SALE
+INNER JOIN
+    USER_INFO AS INFO
+    ON SALE.USER_ID = INFO.USER_ID
+WHERE
+    INFO.GENDER IS NOT NULL
+GROUP BY
+    YEAR,
+    MONTH,
+    INFO.GENDER
+ORDER BY
+    YEAR ASC,
+    MONTH ASC,
+    INFO.GENDER ASC;
