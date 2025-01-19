@@ -11,31 +11,20 @@ INNER JOIN
 WHERE
     C.CAR_TYPE IN ('SUV', '세단')
     AND DP.DURATION_TYPE = '30일 이상'
-    # AND C.CAR_ID IN (
-    #     SELECT
-    #         CAR_ID
-    #     FROM
-    #         CAR_RENTAL_COMPANY_RENTAL_HISTORY
-    #     WHERE
-    #         ((START_DATE < '2022-11-01' AND END_DATE < '2022-11-01')
-    #         OR (START_DATE > '2022-11-30' AND END_DATE > '2022-11-30'))
-    # )
-    AND NOT EXISTS (
-        SELECT 1
-        FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY AS H
-        WHERE 
-            H.CAR_ID = C.CAR_ID
-            AND H.START_DATE <= '2022-11-30'
-            AND H.END_DATE >= '2022-11-01'
+    AND C.CAR_ID NOT IN (
+        SELECT
+            CAR_ID
+        FROM
+            CAR_RENTAL_COMPANY_RENTAL_HISTORY
+        WHERE
+            (START_DATE <= '2022-11-30' AND END_DATE >= '2022-11-01')
     )
-# GROUP BY
-#     C.CAR_ID,
-#     C.CAR_TYPE
+GROUP BY
+    C.CAR_ID,
+    C.CAR_TYPE
 HAVING
     FEE BETWEEN 500000 AND 2000000
 ORDER BY
     FEE DESC,
     C.CAR_TYPE ASC,
     C.CAR_ID DESC;
-    
-
