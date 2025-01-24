@@ -69,3 +69,33 @@ SELECT  Project_Start
         ,Project_Start ASC;
 
 ```
+
+```sql
+WITH ProjectGroups AS (
+    SELECT
+        Task_ID,
+        Start_Date,
+        End_Date,
+        Start_Date - ROW_NUMBER() OVER (ORDER BY Start_Date) AS GroupID
+    FROM
+        Projects
+),
+GroupedProjects AS (
+    SELECT
+        MIN(Start_Date) AS Project_Start,
+        MAX(End_Date) AS Project_End,
+        MAX(End_Date) - MIN(Start_Date) + 1 AS Duration
+    FROM
+        ProjectGroups
+    GROUP BY
+        GroupID
+)
+SELECT
+    Project_Start,
+    Project_End
+FROM
+    GroupedProjects
+ORDER BY
+    Duration ASC,
+    Project_Start ASC;
+```
