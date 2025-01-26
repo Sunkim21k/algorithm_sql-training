@@ -23,23 +23,35 @@ For example, the output for all prime numbers ≤10 would be:
 */
 
 WITH RECURSIVE numbers AS (
-    SELECT  2 AS num
+    SELECT 
+        2 AS num
     UNION ALL
-    SELECT  num + 1
-      FROM  numbers
-     WHERE  num <= 1000 
+    SELECT 
+        num + 1
+    FROM 
+        numbers
+    WHERE 
+        num < 1000
+),
+prime_numbers AS (
+    SELECT
+        n.num
+    FROM
+        numbers AS n
+    WHERE NOT EXISTS (
+        SELECT
+            1
+        FROM
+            numbers AS d
+        WHERE
+            d.num > 1
+            AND d.num < n.num
+            AND n.num % d.num = 0
+    )
 )
 
-SELECT  GROUP_CONCAT(num SEPARATOR '&') AS primes
-  FROM  (
-      SELECT num
-        FROM numbers n
-       WHERE NOT EXISTS (
-           SELECT 1
-             FROM numbers d
-            WHERE d.num < n.num
-              AND d.num > 1
-              AND n.num % d.num = 0
-       )
-) primes_list;
+SELECT
+    GROUP_CONCAT(num SEPARATOR '&') AS primes
+FROM
+    prime_numbers;
 ```
