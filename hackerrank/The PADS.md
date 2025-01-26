@@ -65,18 +65,20 @@ The results of the second query are ascendingly ordered first by number of names
 2-1. order by count occupation asc, occupation name asc
 */
 
--- QUERY 1
-SELECT  CONCAT(Name, '(', LEFT(Occupation, 1), ')')
-  FROM  OCCUPATIONS
- ORDER
-    BY  Name ASC;
+SELECT
+    CONCAT(Name, '(', LEFT(Occupation, 1), ')')
+FROM
+    OCCUPATIONS
+ORDER BY
+    Name;
 
--- QUERY 2
-SELECT  CONCAT('There are a total of ', COUNT(*), ' ', LOWER(Occupation), 's.')
-  FROM  OCCUPATIONS
- GROUP
-    BY  Occupation
- ORDER
-    BY  COUNT(*) ASC
-        ,Occupation ASC;
+SELECT
+    CONCAT('There are a total of ', COUNT(*), ' ', LOWER(Occupation), 's.')
+FROM
+    OCCUPATIONS
+GROUP BY
+    Occupation
+ORDER BY
+    COUNT(*) ASC,
+    Occupation ASC;
 ```
