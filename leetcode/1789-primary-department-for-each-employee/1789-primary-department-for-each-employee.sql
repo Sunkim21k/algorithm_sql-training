@@ -1,20 +1,32 @@
 # Write your MySQL query statement below
+WITH primary_check AS (
 SELECT
-    employee_id,
-    department_id
-FROM 
-    Employee
-GROUP BY
-    employee_id
-HAVING
-    COUNT(employee_id) = 1
-
-UNION ALL
-
-SELECT
-    employee_id,
-    department_id
+    EMPLOYEE_ID,
+    DEPARTMENT_ID
 FROM
-    Employee
+    EMPLOYEE
 WHERE
-    primary_flag = 'Y';
+    PRIMARY_FLAG = 'Y'
+GROUP BY
+    EMPLOYEE_ID
+)
+SELECT
+    EMPLOYEE_ID,
+    DEPARTMENT_ID
+FROM
+    EMPLOYEE
+WHERE
+    EMPLOYEE_ID NOT IN (
+        SELECT
+            employee_id
+        FROM
+            primary_check
+    )
+
+UNION
+
+SELECT
+    EMPLOYEE_ID,
+    DEPARTMENT_ID
+FROM
+    primary_check
