@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 01월 10일 00:46:30
+2025년 03월 27일 18:26:06
 
 ### 문제 설명
 
@@ -119,9 +119,12 @@
 <th>FISH_TYPE</th>
 </tr>
 </thead>
-        <tbody></tbody>
+        <tbody><tr>
+<td>3</td>
+<td>50</td>
+<td>0</td>
+</tr>
+</tbody>
       </table>
-<p>| 3 | 50 | 0 |</p>
-
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
