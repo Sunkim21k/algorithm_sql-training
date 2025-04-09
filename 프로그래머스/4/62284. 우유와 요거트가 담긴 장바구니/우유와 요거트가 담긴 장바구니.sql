@@ -3,24 +3,21 @@
     2. ORDER BY CART_ID ASC
 */
 -- 코드를 입력하세요
-# WITH CHECK_NAME AS (
-#     SELECT 
-#         NAME
-#     FROM
-#         CART_PRODUCTS
-#     WHERE
-#         CART_ID
-# )
-
+WITH CHECK_MILK AS (
+    SELECT
+        CART_ID,
+        NAME
+    FROM
+        CART_PRODUCTS
+    WHERE
+        NAME LIKE ('Milk')
+)
 SELECT
     CART_ID
 FROM
     CART_PRODUCTS
 WHERE
-    NAME IN ('Milk', 'Yogurt')
-GROUP BY
-    CART_ID
-HAVING
-    COUNT(DISTINCT NAME) >= 2
+    CART_ID IN (SELECT CART_ID FROM CHECK_MILK)
+    AND NAME LIKE ('Yogurt')
 ORDER BY
-    CART_ID ASC;
+    1 ASC;
