@@ -1,20 +1,44 @@
 -- 코드를 작성해주세요
-WITH MAX_SCORE_EMP_2022 AS (
+# WITH MAX_SCORE_EMP_2022 AS (
+#     SELECT
+#         EMP_NO,
+#         SUM(SCORE) AS TOTAL_SCORE
+#     FROM
+#         HR_GRADE
+#     WHERE
+#         YEAR = 2022
+#     GROUP BY
+#         EMP_NO
+#     ORDER BY
+#         2 DESC
+#     LIMIT 1
+# )
+# SELECT
+#     TOTAL_SCORE AS SCORE,
+#     HE.EMP_NO,
+#     HE.EMP_NAME,
+#     HE.POSITION,
+#     HE.EMAIL
+# FROM
+#     HR_EMPLOYEES AS HE
+# INNER JOIN
+#     MAX_SCORE_EMP_2022 AS MSE_2022
+#     ON HE.EMP_NO = MSE_2022.EMP_NO;
+
+WITH CHECK_SCORE AS (
     SELECT
         EMP_NO,
-        SUM(SCORE) AS TOTAL_SCORE
+        SUM(SCORE) AS SCORE,
+        RANK() OVER(ORDER BY SUM(SCORE) DESC) AS RN
     FROM
         HR_GRADE
     WHERE
         YEAR = 2022
     GROUP BY
         EMP_NO
-    ORDER BY
-        2 DESC
-    LIMIT 1
 )
 SELECT
-    TOTAL_SCORE AS SCORE,
+    CS.SCORE,
     HE.EMP_NO,
     HE.EMP_NAME,
     HE.POSITION,
@@ -22,5 +46,7 @@ SELECT
 FROM
     HR_EMPLOYEES AS HE
 INNER JOIN
-    MAX_SCORE_EMP_2022 AS MSE_2022
-    ON HE.EMP_NO = MSE_2022.EMP_NO;
+    CHECK_SCORE AS CS
+    ON HE.EMP_NO = CS.EMP_NO
+WHERE
+    CS.RN = 1
