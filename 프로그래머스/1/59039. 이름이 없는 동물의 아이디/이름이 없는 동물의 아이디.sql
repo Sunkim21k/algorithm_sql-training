@@ -5,6 +5,7 @@
 #  ORDER
 #     BY  ANIMAL_ID ASC;
 
+
 SELECT
     ANIMAL_ID
 FROM    
