@@ -9,6 +9,17 @@
 # ORDER BY
 #     1 ASC;
 
+# SELECT
+#     FACTORY_ID,
+#     FACTORY_NAME,
+#     ADDRESS
+# FROM
+#     FOOD_FACTORY
+# WHERE
+#     ADDRESS LIKE '%강원도%'
+# ORDER BY
+#     1 ASC;
+
 SELECT
     FACTORY_ID,
     FACTORY_NAME,
@@ -16,6 +27,6 @@ SELECT
 FROM
     FOOD_FACTORY
 WHERE
-    ADDRESS LIKE '%강원도%'
+    ADDRESS LIKE '강원도%'
 ORDER BY
-    1 ASC;
+    FACTORY_ID ASC;
