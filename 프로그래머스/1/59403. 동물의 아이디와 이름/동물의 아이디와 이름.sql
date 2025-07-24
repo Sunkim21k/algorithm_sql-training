@@ -4,10 +4,18 @@
 #  ORDER
 #     BY  ANIMAL_ID ASC;
 
+# SELECT
+#     ANIMAL_ID,
+#     NAME
+# FROM
+#     ANIMAL_INS
+# ORDER BY
+#     1 ASC;
+
 SELECT
     ANIMAL_ID,
     NAME
 FROM
     ANIMAL_INS
 ORDER BY
-    1 ASC;
+    ANIMAL_ID ASC;
