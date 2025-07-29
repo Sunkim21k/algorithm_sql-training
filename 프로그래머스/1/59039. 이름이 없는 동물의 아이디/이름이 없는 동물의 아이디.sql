@@ -6,11 +6,18 @@
 #     BY  ANIMAL_ID ASC;
 
 
+# SELECT
+#     ANIMAL_ID
+# FROM    
+#     ANIMAL_INS
+# WHERE
+#     NAME IS NULL
+# ORDER BY
+#     1 ASC;
+
 SELECT
     ANIMAL_ID
-FROM    
+FROM
     ANIMAL_INS
 WHERE
     NAME IS NULL
-ORDER BY
-    1 ASC;
