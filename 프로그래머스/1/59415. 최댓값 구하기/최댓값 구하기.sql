@@ -2,10 +2,16 @@
 # SELECT  MAX(DATETIME)
 #   FROM  ANIMAL_INS;
 
+# SELECT
+#     DATETIME AS '시간'
+# FROM
+#     ANIMAL_INS
+# ORDER BY
+#     1 DESC
+#     LIMIT 1
+
 SELECT
-    DATETIME AS '시간'
+    MAX(DATETIME) AS '시간'
 FROM
     ANIMAL_INS
-ORDER BY
-    1 DESC
-    LIMIT 1
+    
