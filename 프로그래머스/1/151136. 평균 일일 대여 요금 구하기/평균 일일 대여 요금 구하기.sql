@@ -3,14 +3,21 @@
 #   FROM  CAR_RENTAL_COMPANY_CAR
 #  WHERE  CAR_TYPE = 'SUV';
 
+# SELECT
+#     ROUND(AVG(DAILY_FEE),0) AS AVERAGE_FEE
+# FROM
+#     (
+#         SELECT
+#             DAILY_FEE
+#         FROM
+#             CAR_RENTAL_COMPANY_CAR
+#         WHERE
+#             CAR_TYPE LIKE 'SUV'
+#     ) AS T1
+
 SELECT
     ROUND(AVG(DAILY_FEE),0) AS AVERAGE_FEE
 FROM
-    (
-        SELECT
-            DAILY_FEE
-        FROM
-            CAR_RENTAL_COMPANY_CAR
-        WHERE
-            CAR_TYPE LIKE 'SUV'
-    ) AS T1
+    CAR_RENTAL_COMPANY_CAR
+WHERE
+    CAR_TYPE = 'SUV';
