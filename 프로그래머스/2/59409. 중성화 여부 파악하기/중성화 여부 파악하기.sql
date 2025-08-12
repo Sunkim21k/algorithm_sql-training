@@ -17,4 +17,4 @@ SELECT
         ELSE 'X'
     END AS '중성화'
 FROM
-    ANIMAL_INS;
+    ANIMAL_INS
